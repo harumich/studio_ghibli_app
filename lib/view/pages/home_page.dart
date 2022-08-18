@@ -1,4 +1,3 @@
-// lib/view/pages/home_page.dart
 import 'package:flutter/material.dart';
 import 'package:studio_ghibli_app/repository/entities/movie_model.dart';
 
@@ -74,22 +73,35 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          body: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: const [
-                Text(
-                  'Hello World!',
-                  style: TextStyle(fontSize: 50),
-                ),
-                Text(
-                  'ごきげんよう！',
-                  style: TextStyle(fontSize: 20),
-                ),
-              ],
-            ),
+          body: ListView.builder(
+              padding: const EdgeInsets.all(16),
+              itemCount: movies.length,
+              itemBuilder: (BuildContext context, int index) {
+                return MovieCard(movie: movies[index]);
+              }
           )
       ),
+    );
+  }
+}
+
+class MovieCard extends StatelessWidget {
+  const MovieCard({Key? key, required this.movie}) : super(key: key);
+
+  final Movie movie;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Image.network(
+        movie.imageUrls?.first ?? 'https://t.pimg.jp/047/597/497/5/47597497.jpg',
+        height: 50,
+        width: 50,
+      ),
+      title: Text(movie.originalTitle),
+      onTap: () => {
+
+      },
     );
   }
 }
