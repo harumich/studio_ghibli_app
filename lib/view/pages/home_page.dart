@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
+
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('タイトル'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+    return SafeArea(
+      child: Scaffold(
+          body: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                Text(
+                  'Hello World!',
+                  style: TextStyle(fontSize: 50),
+                ),
+                Text(
+                  'ごきげんよう！',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ],
             ),
-            Text(
-              '0',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+          )
       ),
     );
   }
