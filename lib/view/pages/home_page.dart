@@ -93,27 +93,40 @@ class MyHomePage extends StatelessWidget {
             color: Colors.black,
             child: movie.imageUrls != null
               ? Image.network(movie.imageUrls!.first)
-              : Padding(
-                padding: const EdgeInsets.only(top: 45,bottom: 45),
-                child: Container(
-                    height: 50,
-                    color: Colors.white70,
-                    child: Center(
-                      child: Text(
-                        '$movieTitleの画像は\n見つかりませんでした。',
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold
-                        ),
-                      )
-                    )
+              : Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Stack(
+                        children: [
+                          Image.network(
+                            'https://www.ghibli.jp/images/park1.jpg',
+                              color: const Color.fromRGBO(255, 255, 255, 0.7),
+                              colorBlendMode: BlendMode.modulate
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 75, left: 20),
+                            child: Center(
+                              child: Text(
+                                '$movieTitleの画像は\n見つかりませんでした。',
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white70
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                  ],
                 ),
               )
-          ),
+              ),
           onTap: (){
             print(movie.originalTitle);
           },
-        ),
+          ),
       );
     }
     return movieWidgets;
