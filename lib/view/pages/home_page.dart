@@ -73,35 +73,51 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          body: ListView.builder(
-              padding: const EdgeInsets.all(16),
-              itemCount: movies.length,
-              itemBuilder: (BuildContext context, int index) {
-                return MovieCard(movie: movies[index]);
-              }
+          backgroundColor: Colors.black,
+          body:  ListView(
+            itemExtent: 300,
+            children: _getItems(),
           )
       ),
     );
   }
-}
 
-class MovieCard extends StatelessWidget {
-  const MovieCard({Key? key, required this.movie}) : super(key: key);
-
-  final Movie movie;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: Image.network(
-        movie.imageUrls?.first ?? 'https://t.pimg.jp/047/597/497/5/47597497.jpg',
-        height: 50,
-        width: 50,
-      ),
-      title: Text(movie.originalTitle),
-      onTap: () => {
-
-      },
-    );
+  List<Widget> _getItems() {
+    final List<Widget> movieWidgets = [];
+    for (Movie movie in movies) {
+      String movieTitle = movie.originalTitle;
+      movieWidgets.add(
+        InkWell(
+          highlightColor: Colors.blue,
+          child: Container(
+            color: Colors.black,
+            child: movie.imageUrls != null
+              ? Image.network(movie.imageUrls!.first)
+              : Padding(
+                padding: const EdgeInsets.only(top: 45,bottom: 45),
+                child: Container(
+                    height: 50,
+                    color: Colors.white70,
+                    child: Center(
+                      child: Text(
+                        '$movieTitleの画像は\n見つかりませんでした。',
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold
+                        ),
+                      )
+                    )
+                ),
+              )
+          ),
+          onTap: (){
+            print(movie.originalTitle);
+          },
+        ),
+      );
+    }
+    return movieWidgets;
   }
 }
+
+
