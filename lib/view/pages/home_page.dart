@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:studio_ghibli_app/repository/entities/movie_model.dart';
 import 'package:studio_ghibli_app/view/pages/detail_page.dart';
+import 'package:studio_ghibli_app/view/widgets/not_found_image.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
@@ -88,47 +89,18 @@ class MyHomePage extends StatelessWidget {
 
   InkWell _getItems(BuildContext context, int index) {
     Movie movie = movies[index];
-    String movieTitle = movie.originalTitle;
       return InkWell(
         highlightColor: Colors.blue,
         child: Container(
           color: Colors.black,
           child: movie.imageUrls != null
             ? Image.network(movie.imageUrls!.first)
-            : Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Stack(
-                      children: [
-                        Image.network(
-                          'https://www.ghibli.jp/images/park1.jpg',
-                            color: const Color.fromRGBO(255, 255, 255, 0.7),
-                            colorBlendMode: BlendMode.modulate
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 75, left: 20),
-                          child: Center(
-                            child: Text(
-                              '$movieTitleの画像は\n見つかりませんでした。',
-                              style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white70
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                ],
-              ),
-            )
-            ),
+            : NotFoundImage(title: movie.originalTitle)
+        ),
         onTap: (){
           Navigator.of(context).push(
               MaterialPageRoute(
-                  builder: (BuildContext context) => MovieDetailPage(index: index)
+                  builder: (BuildContext context) => MovieDetailPage(movie: movie)
               )
           );
         },
