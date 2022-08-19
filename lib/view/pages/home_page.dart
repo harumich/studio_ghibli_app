@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:studio_ghibli_app/repository/entities/movie_model.dart';
+import 'package:studio_ghibli_app/view/pages/detail_page.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
@@ -125,7 +126,11 @@ class MyHomePage extends StatelessWidget {
             )
             ),
         onTap: (){
-
+          Navigator.of(context).push(
+              MaterialPageRoute(
+                  builder: (BuildContext context) => MovieDetailPage(index: index)
+              )
+          );
         },
       );
   }
