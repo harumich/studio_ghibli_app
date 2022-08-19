@@ -74,62 +74,60 @@ class MyHomePage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
           backgroundColor: Colors.black,
-          body:  ListView(
+          body:  ListView.builder(
             itemExtent: 300,
-            children: _getItems(),
+            itemCount: movies.length,
+            itemBuilder: (BuildContext context, int index){
+              return _getItems(context, index);
+            },
           )
       ),
     );
   }
 
-  List<Widget> _getItems() {
-    final List<Widget> movieWidgets = [];
-    for (Movie movie in movies) {
-      String movieTitle = movie.originalTitle;
-      movieWidgets.add(
-        InkWell(
-          highlightColor: Colors.blue,
-          child: Container(
-            color: Colors.black,
-            child: movie.imageUrls != null
-              ? Image.network(movie.imageUrls!.first)
-              : Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Stack(
-                        children: [
-                          Image.network(
-                            'https://www.ghibli.jp/images/park1.jpg',
-                              color: const Color.fromRGBO(255, 255, 255, 0.7),
-                              colorBlendMode: BlendMode.modulate
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 75, left: 20),
-                            child: Center(
-                              child: Text(
-                                '$movieTitleの画像は\n見つかりませんでした。',
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white70
-                                ),
+  InkWell _getItems(BuildContext context, int index) {
+    Movie movie = movies[index];
+    String movieTitle = movie.originalTitle;
+      return InkWell(
+        highlightColor: Colors.blue,
+        child: Container(
+          color: Colors.black,
+          child: movie.imageUrls != null
+            ? Image.network(movie.imageUrls!.first)
+            : Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Stack(
+                      children: [
+                        Image.network(
+                          'https://www.ghibli.jp/images/park1.jpg',
+                            color: const Color.fromRGBO(255, 255, 255, 0.7),
+                            colorBlendMode: BlendMode.modulate
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 75, left: 20),
+                          child: Center(
+                            child: Text(
+                              '$movieTitleの画像は\n見つかりませんでした。',
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white70
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                  ],
-                ),
-              )
+                        ),
+                      ],
+                    ),
+                ],
               ),
-          onTap: (){
-            print(movie.originalTitle);
-          },
-          ),
+            )
+            ),
+        onTap: (){
+
+        },
       );
-    }
-    return movieWidgets;
   }
 }
 
