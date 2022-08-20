@@ -14,4 +14,14 @@ class Movie {
     required this.releaseDate,
     required this.director,
   });
+
+  factory Movie.fromJson(Map<String, dynamic> json) {
+    return Movie(
+      id: json['id'],
+      originalTitle: json['original_title'],
+      description: json['description'],
+      releaseDate: json['release_date'],
+      director: json['director'],
+    );
+  }
 }
