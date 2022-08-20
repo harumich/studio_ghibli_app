@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:studio_ghibli_app/repository/entities/movie_model.dart';
+import 'package:studio_ghibli_app/view/widgets/movie_carousel_slider.dart';
 import 'package:studio_ghibli_app/view/widgets/not_found_image.dart';
 
 class MovieDetailPage extends StatelessWidget {
@@ -35,7 +36,7 @@ class MovieDetailPage extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               movie.imageUrls != null
-                ? Image.network(movie.imageUrls!.first)
+                ? MovieCarouselSlider(images: movie.imageUrls!)
                 : NotFoundImage(title: movie.originalTitle),
               Padding(
                 padding: const EdgeInsets.only(top: 10, bottom: 20),
