@@ -13,7 +13,6 @@ class MyHomePage extends StatelessWidget {
     return Consumer<MoviesNotifier>(
         builder: (context, movies, child) {
           final List <Movie> movieList = movies.getAll();
-          print('ここ');
           return SafeArea(
             child: Scaffold(
                 backgroundColor: Colors.black,
