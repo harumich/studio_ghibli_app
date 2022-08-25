@@ -7,11 +7,13 @@ Future<List<Movie>> fetchMovies() async {
   List<Movie> movies = [];
   final res = await http.get(Uri.parse(ghibliApiRoute));
   if (res.statusCode == 200) {
-    for (int i = 0; i < res.body.length; i++) {
-      movies.add(Movie.fromJson(jsonDecode(res.body[i])));
-    }
+    var jsonlist = jsonDecode(res.body) as List;
+    jsonlist.forEach((e) {
+      movies.add(Movie.fromJson(e));
+      //print(Movie.fromJson(e));
+    });
     return movies;
   } else {
-    throw Exception('Failed to Load Pokemon');
+    throw Exception('Failed to Load Movie');
   }
 }

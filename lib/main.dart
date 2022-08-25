@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:studio_ghibli_app/providers/movies_notifier.dart';
 import 'package:studio_ghibli_app/view/pages/home_page.dart';
 
+
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  final moviesNotifier = MoviesNotifier();
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<MoviesNotifier>(
+          create: (context) => moviesNotifier,
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
