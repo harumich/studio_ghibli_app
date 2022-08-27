@@ -1,0 +1,222 @@
+
+type MovieImages {
+  id: ID!
+  title: String!
+  images: [String!]
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelSubscriptionStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  in: [String]
+  notIn: [String]
+}
+
+input ModelSubscriptionIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  in: [Int]
+  notIn: [Int]
+}
+
+input ModelSubscriptionFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  in: [Float]
+  notIn: [Float]
+}
+
+input ModelSubscriptionBooleanInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelSubscriptionIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  in: [ID]
+  notIn: [ID]
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelMovieImagesConnection {
+  items: [MovieImages]!
+  nextToken: String
+}
+
+input ModelMovieImagesFilterInput {
+  id: ModelIDInput
+  title: ModelStringInput
+  images: ModelStringInput
+  and: [ModelMovieImagesFilterInput]
+  or: [ModelMovieImagesFilterInput]
+  not: ModelMovieImagesFilterInput
+}
+
+type Query {
+  getMovieImages(id: ID!): MovieImages
+  listMovieImages(filter: ModelMovieImagesFilterInput, limit: Int, nextToken: String): ModelMovieImagesConnection
+}
+
+input ModelMovieImagesConditionInput {
+  title: ModelStringInput
+  images: ModelStringInput
+  and: [ModelMovieImagesConditionInput]
+  or: [ModelMovieImagesConditionInput]
+  not: ModelMovieImagesConditionInput
+}
+
+input CreateMovieImagesInput {
+  id: ID
+  title: String!
+  images: [String!]
+}
+
+input UpdateMovieImagesInput {
+  id: ID!
+  title: String
+  images: [String!]
+}
+
+input DeleteMovieImagesInput {
+  id: ID!
+}
+
+type Mutation {
+  createMovieImages(input: CreateMovieImagesInput!, condition: ModelMovieImagesConditionInput): MovieImages
+  updateMovieImages(input: UpdateMovieImagesInput!, condition: ModelMovieImagesConditionInput): MovieImages
+  deleteMovieImages(input: DeleteMovieImagesInput!, condition: ModelMovieImagesConditionInput): MovieImages
+}
+
+input ModelSubscriptionMovieImagesFilterInput {
+  id: ModelSubscriptionIDInput
+  title: ModelSubscriptionStringInput
+  images: ModelSubscriptionStringInput
+  and: [ModelSubscriptionMovieImagesFilterInput]
+  or: [ModelSubscriptionMovieImagesFilterInput]
+}
+
+type Subscription {
+  onCreateMovieImages(filter: ModelSubscriptionMovieImagesFilterInput): MovieImages @aws_subscribe(mutations: ["createMovieImages"])
+  onUpdateMovieImages(filter: ModelSubscriptionMovieImagesFilterInput): MovieImages @aws_subscribe(mutations: ["updateMovieImages"])
+  onDeleteMovieImages(filter: ModelSubscriptionMovieImagesFilterInput): MovieImages @aws_subscribe(mutations: ["deleteMovieImages"])
+}
+

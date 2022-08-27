@@ -1,0 +1,42 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-ghibliapp-dev-140203-authRole",
+      "UnauthRoleArn": "arn:aws:iam::120521496752:role/amplify-ghibliapp-dev-140203-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::120521496752:role/amplify-ghibliapp-dev-140203-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-ghibliapp-dev-140203-deployment",
+      "UnauthRoleName": "amplify-ghibliapp-dev-140203-unauthRole",
+      "StackName": "amplify-ghibliapp-dev-140203",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:120521496752:stack/amplify-ghibliapp-dev-140203/659cbff0-25c5-11ed-9241-0eb83c253f5b",
+      "AmplifyAppId": "d2oi3nxrdo420i"
+    }
+  },
+  "api": {
+    "ghibliapp": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7
+            }
+          },
+          "additionalAuthenticationProviders": []
+        },
+        "GraphQLAPIIdOutput": "ayf6ynnmyrgsdfmzyy22efvxdu",
+        "GraphQLAPIEndpointOutput": "https://piiorxxxkjcellmbtq3ufpad2e.appsync-api.ap-northeast-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-afgmviwkczftngx57hofifx6oy"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-ghibliapp-dev-140203-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apighibliapp"
+      },
+      "lastPushTimeStamp": "2022-08-27T05:36:25.634Z",
+      "lastPushDirHash": "BNkppsenOjsUH90nQpXV6lFkK9E="
+    }
+  }
+}

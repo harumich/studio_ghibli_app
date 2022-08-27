@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:studio_ghibli_app/providers/movies_notifier.dart';
 import 'package:studio_ghibli_app/repository/common/api/amplify_api_logic.dart';
@@ -8,6 +9,7 @@ import 'package:studio_ghibli_app/view/pages/home_page.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   configureAmplify();
+  await Hive.initFlutter();
   final moviesNotifier = MoviesNotifier();
   runApp(
     MultiProvider(
