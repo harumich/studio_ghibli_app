@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:studio_ghibli_app/providers/movies_notifier.dart';
@@ -25,7 +26,7 @@ class MyHomePage extends StatelessWidget {
                       child: Container(
                           color: Colors.black,
                           child: movieList[index].imageUrls != null && movieList[index].imageUrls!.isNotEmpty
-                              ? Image.network(movieList[index].imageUrls!.first)
+                              ? CachedNetworkImage(imageUrl:movieList[index].imageUrls!.first)
                               : NotFoundImage(
                               title: movieList[index].originalTitle)
                       ),
