@@ -1,7 +1,7 @@
 class Movie {
   final String id;
   final String originalTitle;
-  final List<String>? imageUrls;
+  late List<String>? imageUrls;
   final String description;
   final String releaseDate;
   final String director;
@@ -19,6 +19,7 @@ class Movie {
     return Movie(
       id: json['id'],
       originalTitle: json['original_title'],
+      imageUrls: [],
       description: json['description'],
       releaseDate: json['release_date'],
       director: json['director'],

@@ -35,7 +35,7 @@ class MovieDetailPage extends StatelessWidget {
                 )
               ),
               const SizedBox(height: 30),
-              movie.imageUrls != null
+              movie.imageUrls!.isNotEmpty
                 ? MovieCarouselSlider(images: movie.imageUrls!)
                 : NotFoundImage(title: movie.originalTitle),
               Padding(

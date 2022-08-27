@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class NotFoundImage extends StatelessWidget {
@@ -13,10 +14,10 @@ class NotFoundImage extends StatelessWidget {
         children: [
           Stack(
             children: [
-              Image.network(
-                  'https://www.ghibli.jp/images/park1.jpg',
+              CachedNetworkImage(
+                imageUrl: 'https://www.ghibli.jp/images/park1.jpg',
                   color: const Color.fromRGBO(255, 255, 255, 0.7),
-                  colorBlendMode: BlendMode.modulate
+                  colorBlendMode: BlendMode.modulate,
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 75, left: 20),

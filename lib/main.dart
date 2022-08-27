@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:studio_ghibli_app/providers/movies_notifier.dart';
+import 'package:studio_ghibli_app/repository/common/api/amplify_api_logic.dart';
 import 'package:studio_ghibli_app/view/pages/home_page.dart';
 
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  configureAmplify();
   final moviesNotifier = MoviesNotifier();
   runApp(
     MultiProvider(
