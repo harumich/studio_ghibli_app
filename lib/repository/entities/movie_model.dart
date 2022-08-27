@@ -1,7 +1,7 @@
 class Movie {
   final String id;
   final String originalTitle;
-  late final List<String>? imageUrls;
+  late List<String>? imageUrls;
   final String description;
   final String releaseDate;
   final String director;

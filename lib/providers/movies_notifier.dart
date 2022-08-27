@@ -11,10 +11,11 @@ class MoviesNotifier extends ChangeNotifier {
   List<Movie> getAll() {
     if (_movieList.isEmpty) {
       fetchMovies().then((movies) {
-        if (movies != null) movies.forEach((movie) {
+        movies.forEach((movie) {
           queryMovieImages(movie).then((images){
-            if (images != null)
+            if (images != null) {
               movie.imageUrls = images;
+            }
           });
           _movieList.add(movie);
         });

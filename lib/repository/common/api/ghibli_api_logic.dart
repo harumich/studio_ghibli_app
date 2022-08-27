@@ -10,7 +10,6 @@ Future<List<Movie>> fetchMovies() async {
     var jsonlist = jsonDecode(res.body) as List;
     jsonlist.forEach((e) {
       movies.add(Movie.fromJson(e));
-      //print(Movie.fromJson(e));
     });
     return movies;
   } else {

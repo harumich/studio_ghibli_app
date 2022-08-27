@@ -17,8 +17,8 @@ Future<void> configureAmplify() async {
 
 Future<List<String>?> queryMovieImages(Movie movie) async {
   try {
-    String title = 'movie.originalTitle';
-    final request = ModelQueries.list(MovieImages.classType, where: MovieImages.TITLE.eq(title));
+    String title = movie.originalTitle;
+    final request = ModelQueries.list<MovieImages>(MovieImages.classType, where: MovieImages.TITLE.eq(title));
     final response = await Amplify.API.query(request: request).response;
     final listMovieImages = response.data?.items;
     if (listMovieImages != null && listMovieImages.isNotEmpty){
