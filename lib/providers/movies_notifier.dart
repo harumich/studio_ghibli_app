@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:studio_ghibli_app/repository/common/api/amplify_api_logic.dart';
 import 'package:studio_ghibli_app/repository/common/api/ghibli_api_logic.dart';
 import 'package:studio_ghibli_app/repository/entities/movie_model.dart';
 
@@ -9,8 +10,14 @@ class MoviesNotifier extends ChangeNotifier {
 
   List<Movie> getAll() {
     if (_movieList.isEmpty) {
-      fetchMovies().then((value) {
-        if (value != null) value.forEach((item) => _movieList.add(item));
+      fetchMovies().then((movies) {
+        if (movies != null) movies.forEach((movie) {
+          queryMovieImages(movie).then((images){
+            if (images != null)
+              movie.imageUrls = images;
+          });
+          _movieList.add(movie);
+        });
         notifyListeners();
       });
       return _movieList;

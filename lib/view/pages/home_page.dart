@@ -24,7 +24,7 @@ class MyHomePage extends StatelessWidget {
                       highlightColor: Colors.blue,
                       child: Container(
                           color: Colors.black,
-                          child: movieList[index].imageUrls != null
+                          child: movieList[index].imageUrls != null && movieList[index].imageUrls!.isNotEmpty
                               ? Image.network(movieList[index].imageUrls!.first)
                               : NotFoundImage(
                               title: movieList[index].originalTitle)
