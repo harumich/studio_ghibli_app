@@ -1,0 +1,7 @@
+{
+    "AppSyncApiName": "ghibliapp",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "S3DeploymentBucket": "amplify-ghibliapp-dev-140203-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/2a6925dcf6be4b7760b6426a52cd432cd0021874"
+}

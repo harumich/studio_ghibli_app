@@ -5,7 +5,7 @@ class Movie {
   final String description;
   final String releaseDate;
   final String director;
-
+  late bool isWatched;
   Movie({
     required this.id,
     required this.originalTitle,
@@ -13,6 +13,7 @@ class Movie {
     required this.description,
     required this.releaseDate,
     required this.director,
+    required this.isWatched
   });
 
   factory Movie.fromJson(Map<String, dynamic> json) {
@@ -23,6 +24,7 @@ class Movie {
       description: json['description'],
       releaseDate: json['release_date'],
       director: json['director'],
+      isWatched: false
     );
   }
 }

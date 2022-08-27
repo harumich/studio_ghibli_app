@@ -25,18 +25,27 @@ class MyHomePage extends StatelessWidget {
                       highlightColor: Colors.blue,
                       child: Container(
                           color: Colors.black,
-                          child: movieList[index].imageUrls != null && movieList[index].imageUrls!.isNotEmpty
-                              ? CachedNetworkImage(imageUrl:movieList[index].imageUrls!.first)
-                              : NotFoundImage(
-                              title: movieList[index].originalTitle)
+                          child: Stack(
+                            children: [
+                              movieList[index].imageUrls != null && movieList[index].imageUrls!.isNotEmpty
+                                  ? CachedNetworkImage(imageUrl:movieList[index].imageUrls!.first)
+                                  : NotFoundImage(
+                                  title: movieList[index].originalTitle),
+                              if (movieList[index].isWatched) const Padding(
+                                padding: EdgeInsets.only(top: 35, left: 330),
+                                child: Icon(Icons.visibility, color: Colors.blue, size: 60),
+                              )
+                            ],
+                          )
                       ),
-                      onTap: () {
-                        Navigator.of(context).push(
+                      onTap: () async {
+                        await Navigator.of(context).push(
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    MovieDetailPage(movie: movieList[index])
+                                    MovieDetailPage(index: index)
                             )
                         );
+                        movies.fetchIsWatched(index);
                       },
                     );
                   },
